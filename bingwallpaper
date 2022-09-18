@@ -79,8 +79,12 @@ do
   # Logging.
   echo "Bing Image of the day: $reqImgURL"
 
-  # Getting Image Name.
+  # Getting Image Name, Formatting and Adding Date.
   imgName=${reqImgURL##*/}
+  imgName=$(echo $imgName | cut -c 10-)
+  imgDay=$(echo $day | cut -c 6-)
+  imgDate=$(date -I --date="$imgDay days ago")
+  imgName=$imgDate$imgName
 
   # Create Path Dir.
   mkdir -p $path
